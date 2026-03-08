@@ -23,7 +23,7 @@ API_HASH = environ.get("API_HASH", "bb8f36f9c39a24c7f8b2acbc7ea8c60a")
 BOT_TOKEN = environ.get("BOT_TOKEN", "7557362152:AAHUiiwtv_R-ZsZvIt5Uu4cJ4uyBDMV99HA")
 
 PICS = (environ.get('PICS', 'https://graph.org/file/ce1723991756e48c35aa1.jpg')).split() # Bot Start Picture
-ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '').split()]
+ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '7253187871').split()]
 BOT_USERNAME = environ.get("BOT_USERNAME", "HK_Filterx_Bot") # without @
 PORT = environ.get("PORT", "8080")
 
@@ -46,7 +46,7 @@ AUTO_DELETE = int(environ.get("AUTO_DELETE", "30")) # Time in Minutes
 AUTO_DELETE_TIME = int(environ.get("AUTO_DELETE_TIME", "1800")) # Time in Seconds
 
 # Channel Information
-LOG_CHANNEL = int(environ.get("LOG_CHANNEL", ""))
+LOG_CHANNEL = int(environ.get("LOG_CHANNEL", "-1002056822145"))
 
 # File Caption Information
 CUSTOM_FILE_CAPTION = environ.get("CUSTOM_FILE_CAPTION", f"{script.CAPTION}")
