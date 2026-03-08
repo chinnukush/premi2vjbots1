@@ -92,10 +92,10 @@ async def start(client, message):
             except:
                 return
         await msg.edit_caption(f_caption)
-        k = await msg.reply(f"<b><u>❗️❗️❗️IMPORTANT❗️️❗️❗️</u></b>\n\nThis Movie File/Video will be deleted in <b><u>{AUTO_DELETE} mins</u> 🫥 <i></b>(Due to Copyright Issues)</i>.\n\n<b><i>Please forward this File/Video to your Saved Messages and Start Download there</i></b>",quote=True)
+        k = await msg.reply(f"<b><u>ɴᴏᴛɪᴄᴇ ✨</u></b>\n\nTʜɪꜱ ᴍᴏᴠɪᴇ ғɪʟᴇ/ᴠɪᴅᴇᴏ ᴡɪʟʟ ʙᴇ ᴅᴇʟᴇᴛᴇᴅ ɪɴ <b><u>{AUTO_DELETE} ᴍɪɴꜱ</u> 🫥 <i></b>(ᴅᴜᴇ ᴛᴏ ᴄᴏᴘʏʀɪɢʜᴛ ɪɴᴛᴇɢʀᴀᴛɪᴏɴ)</i>.\n\n<b><i>⚠️ ꜱᴀᴠᴇ ᴛʜᴇ ғɪʟᴇꜱ ᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ ᴀɴᴅ ᴡᴀᴛᴄʜ...</i></b>",quote=True)
         await asyncio.sleep(AUTO_DELETE_TIME)
         await msg.delete()
-        await k.edit_text("<b>Your File/Video is successfully deleted!!!</b>")
+        await k.edit_text("<b>ʏᴏᴜʀ ғɪʟᴇ ɪꜱ ꜱᴜᴄᴄᴇꜱꜱғᴜʟʟʏ ᴅᴇʟᴇᴛᴇᴅ ᴅᴇᴀʀ 😁</b>")
         return
     except:
         pass
