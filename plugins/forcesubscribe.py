@@ -1,5 +1,5 @@
 # force subscribe main code :-
-from info import AUTH_CHANNEL
+from config import AUTH_CHANNEL
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.errors import *
 
