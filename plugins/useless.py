@@ -9,8 +9,11 @@ from pyrogram.enums import ParseMode, ChatAction
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, ReplyKeyboardMarkup, ChatInviteLink, ChatPrivileges
 from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant
 from pyrogram.errors import FloodWait, UserIsBlocked, InputUserDeactivated, UserNotParticipant
-from config import *
-from utils import *
+from config import ADMINS
+from pyrogram import filters
+
+admin = filters.user(ADMINS)
+
 
 #=====================================================================================##
 
