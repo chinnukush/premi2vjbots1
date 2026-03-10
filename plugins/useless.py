@@ -18,7 +18,7 @@ admin = filters.user(ADMINS)
 #=====================================================================================##
 
 @Client.on_message(filters.command('stats') & admin)
-async def stats(bot: Bot, message: Message):
+async def stats(Client, message: Message):
 
     users = await db.full_userbase()
     total = len(users)
@@ -41,7 +41,7 @@ WAIT_MSG = "<b>Working....</b>"
 
 
 @Client.on_message(filters.command('users') & filters.private & admin)
-async def get_users(client: Bot, message: Message):
+async def get_users(client, message: Message):
     msg = await client.send_message(chat_id=message.chat.id, text=WAIT_MSG)
     users = await db.full_userbase()
     await msg.edit(f"{len(users)} users are using this bot")
