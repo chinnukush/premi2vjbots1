@@ -12,7 +12,6 @@ from pyrogram.errors import FloodWait, UserIsBlocked, InputUserDeactivated, User
 from bot import Bot
 from config import *
 from utils import *
-from database.database import *
 
 #=====================================================================================##
 
