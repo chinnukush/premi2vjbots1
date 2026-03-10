@@ -4,6 +4,8 @@
 
 import motor.motor_asyncio
 from config import DB_NAME, DB_URI
+from dbusers import db
+
 
 class Database:
     
@@ -29,6 +31,7 @@ class Database:
     async def total_users_count(self):
         count = await self.col.count_documents({})
         return count
+
     
     async def get_all_users(self):
         return self.col.find({})
