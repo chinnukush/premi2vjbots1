@@ -22,11 +22,11 @@ API_ID = int(environ.get("API_ID", "15671595"))
 API_HASH = environ.get("API_HASH", "bb8f36f9c39a24c7f8b2acbc7ea8c60a")
 BOT_TOKEN = environ.get("BOT_TOKEN", "7557362152:AAHUiiwtv_R-ZsZvIt5Uu4cJ4uyBDMV99HA")
 
-PICS = (environ.get('PICS', 'https://iili.io/qIpC5Mu.jpg')).split() # Bot Start Picture
+PICS = (environ.get('PICS', 'https://iili.io/qRdDk1p.jpg https://iili.io/qIpC5Mu.jpg')).split() # Bot Start Picture
 ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '7253187871').split()]
 BOT_USERNAME = environ.get("BOT_USERNAME", "HK_Filterx_Bot") # without @
 PORT = environ.get("PORT", "8080")
-AUTH_CHANNEL = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('AUTH_CHANNEL', '-1002440757122').split()] # give channel id with seperate space. Ex : ('-10073828 -102782829 -1007282828')
+AUTH_CHANNEL = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('AUTH_CHANNEL', '-1002440757122 -1002190186110').split()] # give channel id with seperate space. Ex : ('-10073828 -102782829 -1007282828')
 
 # Clone Info :-
 CLONE_MODE = bool(environ.get('CLONE_MODE', False)) # Set True or False
