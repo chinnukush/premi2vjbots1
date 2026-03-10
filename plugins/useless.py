@@ -9,13 +9,12 @@ from pyrogram.enums import ParseMode, ChatAction
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, ReplyKeyboardMarkup, ChatInviteLink, ChatPrivileges
 from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant
 from pyrogram.errors import FloodWait, UserIsBlocked, InputUserDeactivated, UserNotParticipant
-from bot import Bot
 from config import *
 from utils import *
 
 #=====================================================================================##
 
-@Bot.on_message(filters.command('stats') & admin)
+@Client.on_message(filters.command('stats') & admin)
 async def stats(bot: Bot, message: Message):
 
     users = await db.full_userbase()
@@ -38,7 +37,7 @@ WAIT_MSG = "<b>Working....</b>"
 #=====================================================================================##
 
 
-@Bot.on_message(filters.command('users') & filters.private & admin)
+@Client.on_message(filters.command('users') & filters.private & admin)
 async def get_users(client: Bot, message: Message):
     msg = await client.send_message(chat_id=message.chat.id, text=WAIT_MSG)
     users = await db.full_userbase()
