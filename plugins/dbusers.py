@@ -4,7 +4,7 @@
 
 import motor.motor_asyncio
 from config import DB_NAME, DB_URI
-from dbusers import db
+from plugins.dbusers import db
 
 
 class Database:
