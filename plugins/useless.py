@@ -18,11 +18,19 @@ from database.database import *
 
 @Bot.on_message(filters.command('stats') & admin)
 async def stats(bot: Bot, message: Message):
+
+    users = await db.full_userbase()
+    total = len(users)
+
     now = datetime.now()
     delta = now - bot.uptime
-    time = get_readable_time(delta.seconds)
-    await message.reply(BOT_STATS_TEXT.format(uptime=time))
+    uptime = get_readable_time(delta.seconds)
 
+    await message.reply(f"""📊 **BOT STATISTICS**
+
+👥 Total Users : {total}
+⏰ Uptime : {uptime}
+🤖 Pyrogram : {__version__}""")
 
 #=====================================================================================##
 
