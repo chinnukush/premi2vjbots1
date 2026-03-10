@@ -11,6 +11,7 @@ from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant
 from pyrogram.errors import FloodWait, UserIsBlocked, InputUserDeactivated, UserNotParticipant
 from config import ADMINS
 from pyrogram import filters
+from plugins.dbusers import db
 
 admin = filters.user(ADMINS)
 
