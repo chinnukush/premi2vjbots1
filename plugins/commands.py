@@ -19,6 +19,7 @@ import re
 import json
 import base64
 from urllib.parse import quote_plus
+from forcesubscribe import check_force_sub
 from TechVJ.utils.file_properties import get_name, get_hash, get_media_file_size
 logger = logging.getLogger(__name__)
 
@@ -51,32 +52,57 @@ def formate_file_name(file_name):
 # Subscribe YouTube Channel For Amazing Bot https://youtube.com/@Tech_VJ
 # Ask Doubt on telegram @KingVJ0
 
-
 @Client.on_message(filters.command("start") & filters.incoming)
 async def start(client, message):
     username = client.me.username
+
+    # ✅ Save user (your existing logic)
     if not await db.is_user_exist(message.from_user.id):
         await db.add_user(message.from_user.id, message.from_user.first_name)
-        await client.send_message(LOG_CHANNEL, script.LOG_TEXT.format(message.from_user.id, message.from_user.mention))
-    if len(message.command) != 2:
-        buttons = [[
-            InlineKeyboardButton(' 📢 ɪᴏɪɴ ᴜᴘᴅᴀᴛᴇꜱ ᴄʜᴀɴɴᴇʟ', url='https://t.me/hari_moviez')
-            ],[
-            InlineKeyboardButton('🔍 ᴍᴏᴠɪᴇ ʀᴇǫᴜᴇꜱᴛ ɢʀᴏᴜᴘ 𝟷', url='https://t.me/iPopcornMoviesGroups'),
-            InlineKeyboardButton('🧭 ᴍᴏᴠɪᴇ ᴄʜᴀɴɴᴇʟ', url='https://t.me/+WQbEWONPmgA3ZDA1')
-            ],[
-            InlineKeyboardButton('💁‍♀️ ʜᴇʟᴘ', callback_data='help'),
-            InlineKeyboardButton('😊 ᴀʙᴏᴜᴛ', callback_data='about')
-        ]]
-        if CLONE_MODE == True:
-            buttons.append([InlineKeyboardButton('🤖 ᴄʀᴇᴀᴛᴇ ʏᴏᴜʀ ᴏᴡɴ ᴄʟᴏɴᴇ ʙᴏᴛ', callback_data='clone')])
-        reply_markup = InlineKeyboardMarkup(buttons)
-        me = client.me
-        await message.reply_photo(
-            photo=random.choice(PICS),
-            caption=script.START_TXT.format(message.from_user.mention, me.mention),
-            reply_markup=reply_markup
+        await client.send_message(
+            LOG_CHANNEL,
+            script.LOG_TEXT.format(message.from_user.id, message.from_user.mention)
         )
+
+    # ✅ IF FILE REQUEST (deep link)
+    if len(message.command) == 2:
+
+        # 🔴 CHECK FORCE SUB FIRST
+        is_joined = await check_force_sub(client, message)
+
+        if not is_joined:
+            return  # ❌ STOP HERE if not joined
+
+        # ✅ USER JOINED → SEND FILE
+        file_id = message.command[1]
+
+        await message.reply_document(file_id)
+        return
+
+    # ✅ NORMAL START (no file param)
+    buttons = [[
+        InlineKeyboardButton(' 📢 ɪᴏɪɴ ᴜᴘᴅᴀᴛᴇꜱ ᴄʜᴀɴɴᴇʟ', url='https://t.me/hari_moviez')
+    ],[
+        InlineKeyboardButton('🔍 ᴍᴏᴠɪᴇ ʀᴇǫᴜᴇꜱᴛ ɢʀᴏᴜᴘ 𝟷', url='https://t.me/iPopcornMoviesGroups'),
+        InlineKeyboardButton('🧭 ᴍᴏᴠɪᴇ ᴄʜᴀɴɴᴇʟ', url='https://t.me/+WQbEWONPmgA3ZDA1')
+    ],[
+        InlineKeyboardButton('💁‍♀️ ʜᴇʟᴘ', callback_data='help'),
+        InlineKeyboardButton('😊 ᴀʙᴏᴜᴛ', callback_data='about')
+    ]]
+
+    if CLONE_MODE == True:
+        buttons.append([
+            InlineKeyboardButton('🤖 ᴄʀᴇᴀᴛᴇ ʏᴏᴜʀ ᴏᴡɴ ᴄʟᴏɴᴇ ʙᴏᴛ', callback_data='clone')
+        ])
+
+    reply_markup = InlineKeyboardMarkup(buttons)
+    me = client.me
+
+    await message.reply_photo(
+        photo=random.choice(PICS),
+        caption=script.START_TXT.format(message.from_user.mention, me.mention),
+        reply_markup=reply_markup
+    )
         return
 
 # Don't Remove Credit Tg - @VJ_Bots
